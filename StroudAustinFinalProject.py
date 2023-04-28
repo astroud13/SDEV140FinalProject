@@ -9,13 +9,13 @@ prizes selected for participation in a library reading program.
 
 from tkinter import *
 
-#Settings for the app
+#Creates a tkinter window object and sets its size and title
 
 reading = Tk()
 reading.geometry("600x500")
 reading.title("Summer reading prize app")
 
-#Gather user inputs
+#Creates labels and entry boxes to collect user information 
 
 name_label = Label(reading, text="What is your name? ")
 name_label.grid(row=0, column=0)
@@ -41,15 +41,17 @@ email_label.grid(row=3, column=0)
 email_entry = Entry(reading, width=30)
 email_entry.grid(row=3, column=1)
 
-# Create first prize list
+# Creates a list of possible prizes and a listbox to display them
 my_reading_list = ["ink pen", "magnet", "canvas bag", "button", "bookmark"]
 
 reading_list = Listbox(reading, selectmode=MULTIPLE, bg="yellow", fg="red")
 reading_list.grid(row=4, column=1)
 
+#Populates the listbox with the possible prizes
 for item in my_reading_list:
     reading_list.insert(END, item)
 
+#Defines a function to add selected prizes to a label 
 def add_reading():
     result = ""
     for item in reading_list.curselection():
@@ -57,12 +59,15 @@ def add_reading():
 
         add_lbl.config(text="Your Prize Selection: " + "\n" + result)
 
+#Creates a label to display the user's selected prizes
 add_lbl = Label(reading, text="")
 add_lbl.grid(row=5, column=1) 
 
+#Creates a button to trigger the add_reading function
 add_button = Button(reading, text="Add Prize" , command= add_reading)
 add_button.grid(row=5, column=0)
 
+#Defines a function to display the user's information upon clicking a checkout
 def check():
     text1 = name_entry.get()
     new_lbl = Label(reading, text="Name: " + text1)
@@ -80,9 +85,11 @@ def check():
     new_lb4 = Label(reading, text="Email Address: " + text4)
     new_lb4.grid(row=8, column=2)
 
+#Creates a button to trigger the check function and display user's information
 check_button = Button(reading, text="Checkout Prize" , command=check)
 check_button.grid(row=6, column=0)
 
+#Defines a function to remove selected prizes from the listbox
 def deleteme():
     reading_list.delete(0,5)
 
